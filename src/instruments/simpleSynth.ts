@@ -20,7 +20,7 @@ const synth = new Tone.Synth({
 
 render(html`
 	<tone-piano
-		@noteon=${({ detail }) => synth.triggerAttack(detail.name)}
+		@noteon=${({ detail }) => synth.triggerAttack(detail.name, undefined, detail.velocity)}
 		@noteoff=${() => synth.triggerRelease()}
 	></tone-piano>
 `, document.querySelector("#content"));
