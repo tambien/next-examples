@@ -15,7 +15,7 @@ customElements.define("tone-buffer-vis", class extends VisBase {
 			await new Promise(done => this.tone.buffer.onload = done);
 		}
 		const values = this.tone.buffer.getChannelData(0);
-		await this.draw(values, true);
+		this.draw(values);
 	}
 
 	bind(tone: import("tone").ToneAudioNode) {

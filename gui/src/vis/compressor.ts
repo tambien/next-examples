@@ -37,9 +37,9 @@ customElements.define("tone-compressor-vis", class extends VisBase {
 		this.draw(values);
 	}
 
-	async draw(values, async = false) {
+	draw(values) {
 		// draw the values
-		await super.draw(values, async);
+		super.draw(values);
 
 		const canvas = this.shadowRoot.querySelector("canvas");
 		const context = canvas.getContext("2d");

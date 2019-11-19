@@ -46,6 +46,7 @@
 		"webpack-cli": "^3.3.10"
 	},
 	"dependencies": {
-		"tone": "^14.4.78"
+		"audiokeys": "^0.1.1",
+		"tone": "^14.4.79"
 	}
 }

@@ -1,5 +1,7 @@
+@import "./common.scss";
+
 #container {
-	font-family: sans-serif;
+	font-family: $titleFont;
 	width: calc(100% - 20px);
 	
 	details {

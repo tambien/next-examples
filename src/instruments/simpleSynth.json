@@ -1,0 +1,5 @@
+{
+	"title" : "Synth",
+	"description" : "Tone.Synth is composed simply of an OmniOscillator routed through an AmplitudeEnvelope",
+	"docs" : ["Synth", "OmniOscillator", "AmplitudeEnvelope"]
+}

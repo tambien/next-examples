@@ -1,9 +1,11 @@
+@import "../component/common.scss";
+
 #container {
 
 	width: 100%;
 
 	font-size: 14px;
-	font-family: sans-serif;
+	font-family: $contentFont;
 	
 	&.error input {
 		transition-duration: 0s;

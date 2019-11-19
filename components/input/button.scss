@@ -18,4 +18,14 @@ button {
 		background-color: #f0f;
 		box-shadow: 0 3px 6px rgba(255,0,255,0.16), 0 3px 6px rgba(255,0,255,0.23);
 	}
+
+	::slotted(svg){
+		height: $buttonHeight;
+		display: inline-block;
+		transition: fill 0.1s;
+	}
+	
+	&:hover ::slotted(svg){
+		fill: white;
+	}
 }

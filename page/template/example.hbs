@@ -5,12 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{{title}}</title>
 	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
-	<script src="https://unpkg.com/tone@typescript"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
+	<script src="https://unpkg.com/tone@14.4.79"></script>
 	<link rel="stylesheet" type="text/css" href="../assets/style/main.css">
 	<script src="./components.js"></script>
 </head>
 <body>
 	{{!-- {{> topbar }} --}}
+	<tone-mute></tone-mute>
+	<tone-loader></tone-loader>
 	<div id="main">
 		{{> sidebar }}
 		<div id="page">

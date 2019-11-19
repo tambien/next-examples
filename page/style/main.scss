@@ -1,5 +1,7 @@
+@import "../../gui/src/component/common.scss";
+
 body {
-	font-family: sans-serif;
+	font-family: $contentFont;
 	
 	#topbar {
 		width: 100%;		
@@ -23,6 +25,7 @@ body {
 					font-size: 1.1em;
 					margin-bottom: 30px;
 					color: #616161;
+					font-family: $titleFont;
 				}
 				
 				p {
@@ -33,6 +36,7 @@ body {
 					font-size: 0.9em;
 					margin-top: 30px;
 					color: #616161;
+					font-family: $contentFont;
 	
 					ul {
 						margin: 5px;

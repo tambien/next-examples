@@ -19,18 +19,25 @@ export abstract class VisBase extends LitElement {
 
 	protected abstract async generate();
 	
-	async draw(values: Float32Array, async = false) {
+	draw(values: Float32Array) {
 		const canvas = this.shadowRoot.querySelector("canvas");
 		const context = canvas.getContext("2d");
 		canvas.height = this.height;
 		canvas.width = this.width;
-		// canvas.width = canvas.width
-		// canvas.height = canvas.offsetHeight
 		const width = canvas.width;
 		const height = canvas.height;
 		context.clearRect(0, 0, width, height);
-		const max = this.normalizeCurve ? Math.max(...values) * 1.1 : 1;
-		const min = this.normalizeCurve ? Math.min(...values) * 1.1 : 0;
+		const maxValuesLength = 2048;
+		if (values.length > maxValuesLength) {
+			const resampled = new Float32Array(maxValuesLength);
+			// down sample to maxValuesLength values
+			for (let i = 0; i < maxValuesLength; i++) {
+				resampled[i] = values[Math.floor((i / maxValuesLength) * values.length)];
+			}
+			values = resampled;
+		}
+		const max = this.normalizeCurve ? Math.max(0.001, ...values) * 1.1 : 1;
+		const min = this.normalizeCurve ? Math.min(-0.001, ...values) * 1.1 : 0;
 	
 		const lineWidth = 3;
 		context.lineWidth = lineWidth;
@@ -43,12 +50,6 @@ export abstract class VisBase extends LitElement {
 				context.moveTo(x, y);
 			} else {
 				context.lineTo(x, y);
-			}
-			if (async && i % 44100 === 0) {
-				context.lineCap = "round";
-				context.strokeStyle = "black";
-				context.stroke();
-				await new Promise(done => setTimeout(done, 1));
 			}
 		}
 		context.lineCap = "round";

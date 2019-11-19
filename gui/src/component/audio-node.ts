@@ -86,6 +86,9 @@ export class ToneAudioNodeElement extends LitElement {
 	}
 
 	private renderValue(name: string, values: any, path: string[]) {
+		if (this.tone && this.tone.toString() === "Waveform") {
+			return html``;
+		}
 		const value = values[name];
 		if (typeof value === "number") {
 			return html`
@@ -118,7 +121,9 @@ export class ToneAudioNodeElement extends LitElement {
 		} else if (typeof value === "object") {
 			return html`
 				<details>
-					<summary>${name}</summary>
+					<summary>
+						${name}
+					</summary>
 					<div class="sub-values">${this.renderValues(value, [...path])}</div>
 				</details>
 			`;
@@ -159,7 +164,7 @@ export class ToneAudioNodeElement extends LitElement {
 				<div id="container">
 					<details ?open=${this.open} @toggle=${e => this.open = (e.target as HTMLDetailsElement).open}>
 						<summary id="title">
-							${unsafeHTML(this.open ? downArrow : upArrow)}
+							<!-- ${unsafeHTML(this.open ? downArrow : upArrow)} -->
 							${this.name}
 						</summary>
 						${this.renderValues(this.tone.get(), [])}

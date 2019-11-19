@@ -4,10 +4,10 @@ import { ui } from "@tonejs/gui";
 
 // the player
 const player = new Tone.Player({
-	url: "../audio/FWDL.[mp3|ogg]",
 	loop: true,
 	loopStart: 0.5,
 	loopEnd: 0.7,
+	url: "../audio/Berklee/enotherapy_3.mp3",
 }).toDestination();
 
 // render the interface
