@@ -1,0 +1,7 @@
+{
+	"title": "Envelope",
+	"description": "Envelopes ramp amplitude, frequency or any other parameter over time. Tone.Envelope and the classes that extend it implement an ADSR envelope type which splits its ramp into four distinct phases: Attack, Decay, Sustain, Release.",
+	"docs" : [
+		"Envelope"
+	]
+}

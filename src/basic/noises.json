@@ -1,0 +1,7 @@
+{
+	"title": "Noise",
+	"description": "[Tone.Noise](https://tonejs.github.io/docs/Noise) has 3 different types of noise: 'white', 'pink', 'brown'. Careful, it's loud!",
+	"docs" : [
+		"Noise"
+	]
+}

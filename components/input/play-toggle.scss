@@ -1,0 +1,15 @@
+@import "./button.scss";
+
+tone-button {
+	display: block;
+
+	svg {
+		height: $buttonHeight;
+		display: inline-block;
+		transition: fill 0.1s;
+	}
+
+	&:hover svg {
+		fill: white;
+	}
+}

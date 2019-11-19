@@ -1,0 +1,47 @@
+#container {
+
+	font-family: sans-serif;
+	margin-bottom: 10px;
+
+	* {
+		font-family: inherit;
+	}
+
+	#title {
+		font-size: 1.1em;
+		font-family: sans-serif;
+	}
+
+	max-width: 320px;
+	width: 100%;
+
+	.value {
+		display: block;
+		margin-top: 4px;
+	}
+
+	details {
+		margin-top: 4px;
+
+		.sub-values {
+			margin-left: 10px;
+		}
+
+		summary {
+			svg {
+				position: relative;
+				transform: translate(0px, 4px);
+				height: 20px;
+				margin-left: 0px;
+			}
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+
+			&::marker {
+				display: none;
+			}
+		}
+	}
+}

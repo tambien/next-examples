@@ -1,0 +1,36 @@
+#container {
+	font-family: sans-serif;
+	width: calc(100% - 20px);
+	
+	details {
+		width: 100%;
+		
+		summary {
+			font-weight: bold;
+			font-size: 1.1em;
+			text-decoration: underline;
+
+			svg {
+				position: relative;
+				transform: translate(0px, 4px);
+				height: 20px;
+				margin-left: 0px;
+			}
+	
+			&::-webkit-details-marker {
+				display: none;
+			}
+	
+			&::marker {
+				display: none;
+			}
+		}
+		
+		
+		#contents {
+			$margin: 5px;
+			width: calc(100% - #{$margin});
+			margin-left: $margin;
+		}
+	}
+}
