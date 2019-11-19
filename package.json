@@ -47,6 +47,7 @@
 	},
 	"dependencies": {
 		"audiokeys": "^0.1.1",
-		"tone": "^14.4.79"
+		"tone": "^14.4.79",
+		"webmidi": "^2.5.1"
 	}
 }

@@ -2,7 +2,7 @@ import { html, LitElement, property } from "lit-element";
 import "./keyboard";
 import { ToneKeyboard } from "./keyboard";
 // import "./select";
-// import "../midi/midi-in";
+import "./midi-in";
 
 export class TonePiano extends LitElement {
 
@@ -11,7 +11,7 @@ export class TonePiano extends LitElement {
 
 	firstUpdated(props) {
 		super.firstUpdated(props);
-		// const keyboard = this.shadowRoot.querySelector("tone-keyboard");
+		const keyboard = this.shadowRoot.querySelector("tone-keyboard") as ToneKeyboard;
 		// this.shadowRoot.querySelector("tone-midi-in").addEventListener("noteon", e => {
 		// 	e.stopPropagation();
 		// 	keyboard.noteon(e.detail.midi);
