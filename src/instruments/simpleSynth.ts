@@ -18,12 +18,6 @@ const synth = new Tone.Synth({
 	portamento: 0.05
 }).toDestination();
 
-// @ts-ignore
-// window.TONE_DEBUG_CLASS = "OmniOscillator";
-// @ts-ignore
-// window.synth = synth;
-synth.debug = true;
-
 render(html`
 	<tone-piano
 		@noteon=${({ detail }) => synth.triggerAttack(detail.name)}
