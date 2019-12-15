@@ -1,0 +1,9 @@
+{
+	"title" : "LFO Effects",
+	"description" : "These effects use an LFO (Low Frequency Oscillator) to modulate the effect. Click and drag the dot to change the frequency and depth of the effect. ",
+	"docs" : [
+		"AutoPanner",
+		"AutoFilter",
+		"Tremolo"
+	]
+}

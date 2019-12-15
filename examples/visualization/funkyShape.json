@@ -1,0 +1,10 @@
+{
+	"title" : "Visualizing Envelopes",
+	"description" : "Access the envelopes current value to synchronize visuals. This sketch uses [p5.js](https://p5js.org)",
+	"docs" : [
+		"Envelope"
+	],
+	"authors" : [
+		"polyrhythmatic"
+	]
+}

@@ -1,0 +1,12 @@
+$titleFont: 'Roboto', sans-serif;
+$contentFont: 'Open Sans', sans-serif;
+
+$lightBlue: rgba(1, 135, 134, 0.26);
+
+@mixin outline {
+	outline: 0px solid rgba(0,0,0,0.24);
+
+	&:focus {
+		outline-width: 3px;
+	}
+}

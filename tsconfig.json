@@ -7,11 +7,12 @@
 		"lib": ["es2015", "dom"],
 		"baseUrl": ".",
 		"paths": {
-			"@tonejs/gui" : ["gui/src/index"]
+			"@tonejs/gui" : ["src/gui/index"],
+			"tone" : ["../../Tone.js"]
 		}
 	},
 	"include": [
-		"src/**/*.ts",
-		"gui/src/**/*.ts"
+		"examples/**/*.ts",
+		"src/gui/**/*.ts"
 	]
 }

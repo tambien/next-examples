@@ -1,0 +1,7 @@
+{
+	"title" : "Signal Ramping",
+	"description" : "Working with signals is different than working with numbers or strings: Signals are values which are updated at audio rate, which allows for sample-accurate scheduling and ramping. `.rampTo(value, rampTime)` smoothly changes the signal from the current value to the target value over the duration of the rampTime. This example uses `.rampTo` in to smooth out changes in volume and frequency.",
+	"docs" : [
+		"Signal"
+	]
+}

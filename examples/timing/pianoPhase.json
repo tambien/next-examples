@@ -1,0 +1,7 @@
+{
+	"title" : "Phasing",
+	"description" : "By slightly slowing down the playbackRate of the Tone.Sequence in the right channel, the two identical melodies phase against each other in interesting ways. Composition by Steve Reich. Inspiration from Alexander Chen.",
+	"docs" : [
+		"Sequence"
+	]
+}

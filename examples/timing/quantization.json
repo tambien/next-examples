@@ -1,0 +1,7 @@
+{
+	"title" : "Quantization",
+	"description" : "Using the \"@\" symbol, Time expressions can be [quantized](https://en.wikipedia.org/wiki/Quantization_(music)) (aligned to a subdivision). In this example, a note's start time is aligned to the given subdivision.",
+	"docs" : [
+		"Time"
+	]
+}

@@ -1,0 +1,8 @@
+{
+	"title": "AMSynth",
+	"description" : "Tone.AMSynth is composed of two Tone.Synths where one Tone.Synth modulates the amplitude of a second Tone.Synth.",
+	"docs" : [
+		"AMSynth",
+		"Synth"
+	]
+}

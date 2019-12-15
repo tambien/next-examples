@@ -1,0 +1,8 @@
+{
+	"title": "FMSynth",
+	"description" : "Tone.FMSynth is composed of two Tone.Synths.",
+	"docs" : [
+		"FMSynth",
+		"Synth"
+	]
+}

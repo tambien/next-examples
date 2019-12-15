@@ -1,0 +1,63 @@
+@import "../../gui/src/component/common.scss";
+
+body {
+	font-family: $contentFont;
+	
+	#topbar {
+		width: 100%;		
+	}
+	
+	#main {
+		display: flex;
+		#sidebar {
+			flex: 0 0 250px;
+		}
+		
+		#page {
+			flex: 1;
+
+			#description {
+				// background-color: #f9f9f9;
+				background-color: rgba(1, 135, 134, 0.05);
+				padding: 20px;
+				margin-bottom: 30px;
+
+				#title {
+					font-size: 1.1em;
+					margin-bottom: 30px;
+					color: #616161;
+					font-family: $titleFont;
+				}
+				
+				p {
+					margin-bottom: 5px;
+				}
+
+				#references {
+					font-size: 0.9em;
+					margin-top: 30px;
+					color: #616161;
+					font-family: $contentFont;
+	
+					ul {
+						margin: 5px;
+						padding-left: 20px;
+						list-style-type: none;
+	
+						a {
+							color: inherit;
+						}
+					}
+				}
+			}
+
+			
+			#content {
+				display: block;
+				width: 320px;
+				margin: 0px auto; 
+			}
+		}
+	}
+
+}

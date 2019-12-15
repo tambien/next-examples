@@ -9,7 +9,7 @@ body {
     body #main #page {
       flex: 1; }
       body #main #page #description {
-        background-color: #f9f9f9;
+        background-color: rgba(1, 135, 134, 0.05);
         padding: 20px;
         margin-bottom: 30px; }
         body #main #page #description #title {

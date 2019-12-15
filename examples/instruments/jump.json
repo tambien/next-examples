@@ -1,0 +1,8 @@
+{
+	"title" : "Supersaw",
+	"description" : "Tone.FatOscillator creates multiple oscillators and detunes them slightly from each other to thicken the sound. The <code>count</code> parameter sets the number of oscillators and <code>spread</code> sets the total spread (in cents) between the oscillators. ",
+	"docs" : [
+		"FatOscillator",
+		"OmniOscillator"
+	]
+}

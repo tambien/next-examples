@@ -3,7 +3,7 @@ const { relative, basename, extname, resolve } = require("path");
 const glob = require("glob");
 
 const examples = {};
-glob.sync(resolve(__dirname, "./src/**/*.ts")).forEach(example => {
+glob.sync(resolve(__dirname, "./examples/**/*.ts")).forEach(example => {
 	const name = basename(example, extname(example));
 	examples[name] = "./" + relative(__dirname, example);
 });
@@ -17,7 +17,8 @@ const commonConfig = {
 	resolve: {
 		extensions: [".ts", ".js"],
 		alias: {
-			"@tonejs/gui": resolve(__dirname, "./gui/src/index.ts"),
+			"@tonejs/gui": resolve(__dirname, "./src/gui/index.ts"),
+			// tone: resolve(__dirname, "../Tone.js/"),
 		}
 	},
 	externals: {
@@ -42,6 +43,7 @@ const commonConfig = {
 						options: {
 							sassOptions: {
 								indentedSyntax: false,
+								includePaths: ["node_modules"],
 							},
 						},
 					},
@@ -67,7 +69,7 @@ const commonConfig = {
 module.exports = [
 	Object.assign({}, commonConfig, {
 		entry: {
-			components: "./components/index.ts"
+			components: "./src/index.ts"
 		}
 	}),
 	Object.assign({}, commonConfig, {
@@ -75,10 +77,10 @@ module.exports = [
 	}),
 	Object.assign({}, commonConfig, {
 		entry: {
-			gui: "./gui/src/index.ts"
+			gui: "./src/gui/index.ts"
 		},
 		output: {
-			path: resolve(__dirname, "gui/build"),
+			path: resolve(__dirname, "build"),
 			filename: "tone-gui.js",
 			libraryTarget: "umd",
 		},

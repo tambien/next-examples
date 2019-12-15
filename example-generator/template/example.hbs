@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{title}}</title>
+	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+	<script src="https://unpkg.com/tone@typescript"></script>
+	<link rel="stylesheet" type="text/css" href="../assets/style/main.css">
+	<script src="./components.js"></script>
+</head>
+<body>
+	{{!-- {{> topbar }} --}}
+	<tone-mute></tone-mute>
+	<tone-loader></tone-loader>
+	<div id="main">
+		{{> sidebar }}
+		<div id="page">
+			<div id="description">
+				<div id="title">{{title}}</div>
+				{{{markdown description}}}
+				
+				<div id="references">
+					<div>Docs:</div>
+					<ul>
+						{{#each docs}}
+							<li>
+								<a href="https://tonejs.github.io/docs/{{this}}">
+									{{this}}
+								</a>
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+			<div id="content">
+				loading...
+			</div>
+		</div>
+	</div>
+	<script src="./{{script}}"></script>
+</body>
+</html>

@@ -4,25 +4,30 @@
 	"description": "Tone.js Examples",
 	"main": "index.js",
 	"scripts": {
-		"watch:html": "nodemon --exec \"npm run build:html\" --ext ts,hbs --ignore scripts/type.ts --ignore scripts/sidebar.ts",
-		"watch:css": "npm run build:css -- -w",
-		"build:html": "node -r ts-node/register ./page/index.ts --output=$npm_config_output",
-		"build:css": "node-sass ./page/style/ -o ./assets/style",
+		"build:css": "node-sass ./example-generator/style/ -o ./assets/style",
+		"build:html": "node -r ts-node/register ./example-generator/index.ts --output=$npm_config_output",
 		"lint": "eslint --ext ts ./**/*.ts --fix",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"watch": "webpack --watch --mode=development"
+		"watch": "concurrently \"npm run watch:css\" \"npm run watch:html\" \"npm run watch:js\"",
+		"watch:css": "npm run build:css -- -w",
+		"watch:html": "nodemon --exec \"npm run build:html\" --ext ts,hbs --ignore scripts/type.ts --ignore scripts/sidebar.ts",
+		"watch:js": "webpack --watch --mode=development"
 	},
 	"nodemonConfig": {
 		"watch": [
-			"page"
+			"example-generator"
 		]
 	},
 	"author": "",
 	"license": "GPL-3.0",
 	"devDependencies": {
+		"@material/mwc-checkbox": "^0.11.1",
+		"@material/mwc-icon": "^0.11.1",
+		"@material/mwc-slider": "^0.11.1",
+		"@material/mwc-textfield": "^0.11.1",
 		"@types/node": "^12.12.8",
 		"@typescript-eslint/eslint-plugin": "^2.7.0",
 		"@typescript-eslint/parser": "^2.7.0",
+		"concurrently": "^5.0.0",
 		"css-loader": "^3.2.0",
 		"deep-equal": "^1.1.1",
 		"eslint": "^6.6.0",
@@ -46,8 +51,11 @@
 		"webpack-cli": "^3.3.10"
 	},
 	"dependencies": {
+		"@tonejs/midi": "^2.0.15",
+		"@types/p5": "^0.9.0",
 		"audiokeys": "^0.1.1",
-		"tone": "^14.4.79",
+		"p5": "^0.10.2",
+		"tone": "^14.5.0",
 		"webmidi": "^2.5.1"
 	}
 }
