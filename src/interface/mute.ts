@@ -39,9 +39,10 @@ export class ToneMuteButton extends LitElement {
 
 	render() {
 		return html`
-			<button @click=${this._clicked.bind(this)} ?muted=${this.muted}>
-				<mwc-icon>${this.muted || this.suspended ? "volume_off" : "volume_up"}</mwc-icon>
-			</button>
+			<mwc-icon-button-toggle onIcon="volume_off" offIcon="volume_up" @click=${this._clicked.bind(this)} ?on=${this.muted || this.suspended}>
+				<!-- ${this.muted || this.suspended ? "volume_off" : "volume_up"} -->
+				<!-- <mwc-icon></mwc-icon> -->
+			</mwc-icon-button-toggle>
 		`;
 	}
 }

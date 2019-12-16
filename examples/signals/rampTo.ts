@@ -1,6 +1,5 @@
 import * as Tone from "tone";
 import { html, render } from "lit-html";
-import { ui } from "@tonejs/gui";
 
 const oscillators = [];
 
@@ -18,13 +17,13 @@ for (let i = 0; i < 8; i++) {
 function start() {
 	oscillators.forEach(o => {
 		o.start();
-		o.volume.rampTo(-20, 1);
+		o.volume.rampTo(-20, 0.5);
 	});
 }
 
 function stop() {
 	oscillators.forEach(o => {
-		o.volume.rampTo(-Infinity, 1);
+		o.volume.rampTo(-Infinity, 0.5);
 		o.stop("+1");
 	});
 }

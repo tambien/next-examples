@@ -1,49 +1,82 @@
-// import { css, html, LitElement, property } from "lit-element";
+import { VisBase } from "./vis-base";
+import { customElement, html } from "lit-element";
 
-// customElements.define("tone-meter-vis", class extends LitElement {
+@customElement("tone-meter-vis")
+class ToneMeterElement extends VisBase {
 
-// 	name = "hi"
+	protected height = 40
+	private tone: import("tone").Meter;
 
-// 	@property({ type: String })
-// 	protected bgcolor = "white";
+	private meterLevels: number[] = [];
+
+	protected generate() {
+		// ignored
+	}
 	
-// 	@property({ type: String })
-// 	protected color = "black";
-	
-// 	private tone: import("tone").Meter;
+	private loop() {
+		requestAnimationFrame(this.loop.bind(this));
+		if (!this.tone) {
+			return;
+		}
+		const values = this.tone.getValue();
+		this.meterLevels = Array.isArray(values) ? values : [values];
+		this.requestUpdate();
+	}
 
-// 	bind(tone: import("tone").ToneAudioNode) {
-// 		this.tone = tone as import("tone").Meter;
-// 		this.loop();
-// 	}
+	bind(tone: import("tone").ToneAudioNode) {
+		this.tone = tone as import("tone").Meter;
+		this.tone.normalRange = true;
+		this.loop();
+	}
 
-// 	private loop() {
-// 		requestAnimationFrame(this.loop.bind(this));
-// 		const db = this.tone.getValue();
-// 		const norm = Math.pow(10, db / 20);
-// 		(this.shadowRoot.querySelector("#meter #fill") as HTMLElement).style.width = `${(norm * 100).toFixed(1)}%`;
-// 	}
+	render() {
+		return html`
+			<style>
+				#container {
+					display: flex;
+					align-items: flex-end;
+					border: 2px outset #ddd;
+					border-color: transparent transparent #ddd;
+				}
+				.level {
+					flex: 1;
+					background-color: #aaa;
+					margin: 2px;
+					min-height: 2px;
+					border-top-left-radius: 2px;
+					border-top-right-radius: 2px;
+				}
+			</style>
+			<div id="container" style="height: ${this.height}px">
+				${this.meterLevels.map(val => html`
+					<div class="level" style="height: ${(Math.pow(val, 0.5)*100).toFixed(2)}%"></div>
+				`)}
+			</div>
+		`;
+	}
+};
 
-// 	static get styles() {
-// 		return css`
-// 			#meter {
-// 				width: 100%;
-// 				height: 10px;
-// 			}
+interface MeterOptions {
+	parent?: HTMLElement;
+	tone: import("tone").Meter;
+	height?: number;
+};
 
-// 			#meter #fill {
-// 				height: 100%;
-// 				width: 50%;
-// 				background-color: black;
-// 			}
-// 		`;
-// 	}
-
-// 	render() {
-// 		return html`
-// 			<div id="meter">
-// 				<div id="fill"></div>
-// 			</div>
-// 		`;
-// 	}
-// });
+/**
+ * Create an audio node element
+ */
+export function createMeter({ 
+	tone, 
+	parent, 
+	height,
+}: MeterOptions): ToneMeterElement {
+	const element = document.createElement("tone-meter-vis") as ToneMeterElement;
+	element.bind(tone);
+	if (parent) {
+		parent.appendChild(element);
+	}
+	if (height) {
+		element.setAttribute("height", height.toString());
+	}
+	return element;
+}

@@ -26,19 +26,26 @@ export class ToneSlider extends LitElement {
 		return css`${unsafeCSS(style)}`;
 	}
 
+	private beautifyValue(value: number): string {
+		if (Number.isInteger(value)) {
+			return value.toString();
+		} else {
+			return value.toFixed(2);
+		}
+	}
+
 	render() {
-		console.log(this.step);
 		return html`
 			<div id="container">
 				<div id="label">
 					<label for="slider">${this.label}</label>
-					<span class="value">${this.value} <span class="units">${this.units}</span></span>
+					<span class="value">${this.beautifyValue(this.value)} <span class="units">${this.units}</span></span>
 				</div>
 				<mwc-slider name="slider"
 					.min=${this.min}
 					.max=${this.max}
 					.value=${this.value}
-					.step=${this.step}
+					.step="0"
 					@input=${e => this.value = e.target.value}
 				></mwc-slider>
 			</div>

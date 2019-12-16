@@ -25,6 +25,7 @@
 		"@material/mwc-slider": "^0.11.1",
 		"@material/mwc-textfield": "^0.11.1",
 		"@types/node": "^12.12.8",
+		"@types/p5": "^0.9.0",
 		"@typescript-eslint/eslint-plugin": "^2.7.0",
 		"@typescript-eslint/parser": "^2.7.0",
 		"concurrently": "^5.0.0",
@@ -51,11 +52,16 @@
 		"webpack-cli": "^3.3.10"
 	},
 	"dependencies": {
+		"@material/mwc-drawer": "^0.11.1",
+		"@material/mwc-icon-button": "^0.11.1",
+		"@material/mwc-icon-button-toggle": "^0.11.1",
+		"@material/mwc-top-app-bar": "^0.11.1",
 		"@tonejs/midi": "^2.0.15",
-		"@types/p5": "^0.9.0",
 		"audiokeys": "^0.1.1",
+		"highlight.js": "^9.17.1",
+		"monaco-editor": "^0.18.1",
 		"p5": "^0.10.2",
-		"tone": "^14.5.0",
+		"tone": "^14.5.12",
 		"webmidi": "^2.5.1"
 	}
 }

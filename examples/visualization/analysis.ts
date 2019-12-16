@@ -20,11 +20,13 @@ render(html`
 fft({
 	parent: document.querySelector("#content"),
 	tone: eq,
+	height: 60,
 });
 
 waveform({
 	parent: document.querySelector("#content"),
 	tone: oscilloscope,
+	height: 60,
 });
 
 // connect the UI with the components

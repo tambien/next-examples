@@ -52,6 +52,13 @@ const partR = new Tone.Sequence(((time, note) => {
 // set the playback rate of the right part to be slightly slower
 partR.playbackRate = 0.985;
 
+render(html`
+	<tone-play-toggle
+		@start=${() => Tone.Transport.start()}
+		@stop=${() => Tone.Transport.stop()}
+	></tone-play-toggle>
+`, document.querySelector("#content"));
+
 // document.querySelector("tone-play-toggle").bind(Tone.Transport);
 // document.querySelector("#left").bind(partL);
 // document.querySelector("#right").bind(partR);

@@ -29,6 +29,7 @@ class ToneWaveformElement extends VisBase {
 interface WaveformOptions {
 	parent?: HTMLElement;
 	tone: import("tone").Waveform;
+	height?: number;
 };
 
 /**
@@ -37,11 +38,15 @@ interface WaveformOptions {
 export function createWaveform({ 
 	tone, 
 	parent, 
+	height,
 }: WaveformOptions): ToneWaveformElement {
 	const element = document.createElement("tone-waveform-vis") as ToneWaveformElement;
 	element.bind(tone);
 	if (parent) {
 		parent.appendChild(element);
+	}
+	if (height) {
+		element.setAttribute("height", height.toString());
 	}
 	return element;
 }

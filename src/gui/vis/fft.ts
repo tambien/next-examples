@@ -29,6 +29,7 @@ class ToneFFTElement extends VisBase {
 interface FFTOptions {
 	parent?: HTMLElement;
 	tone: import("tone").FFT;
+	height?: number;
 };
 
 /**
@@ -37,11 +38,15 @@ interface FFTOptions {
 export function createFFT({ 
 	tone, 
 	parent, 
+	height,
 }: FFTOptions): ToneFFTElement {
 	const element = document.createElement("tone-fft-vis") as ToneFFTElement;
 	element.bind(tone);
 	if (parent) {
 		parent.appendChild(element);
+	}
+	if (height) {
+		element.setAttribute("height", height.toString());
 	}
 	return element;
 }
