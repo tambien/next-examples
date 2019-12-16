@@ -8,38 +8,44 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
 	<script src="https://unpkg.com/tone@typescript"></script>
-	<link rel="stylesheet" type="text/css" href="../assets/style/main.css">
 	<script src="./components.js"></script>
+	<link rel="stylesheet" type="text/css" href="../assets/style/main.css">
 </head>
 <body>
 	{{!-- {{> topbar }} --}}
-	<tone-mute></tone-mute>
 	<tone-loader></tone-loader>
-	<div id="main">
+	<mwc-drawer type="modal">
+		<span slot="title">Examples</span>
 		{{> sidebar }}
-		<div id="page">
-			<div id="description">
-				<div id="title">{{title}}</div>
-				{{{markdown description}}}
-				
-				<div id="references">
-					<div>Docs:</div>
-					<ul>
-						{{#each docs}}
-							<li>
-								<a href="https://tonejs.github.io/docs/{{this}}">
-									{{this}}
-								</a>
-							</li>
-						{{/each}}
-					</ul>
+		<div id="main" slot="appContent">
+			<mwc-top-app-bar dense>
+				<mwc-icon-button slot="navigationIcon" icon="menu"></mwc-icon-button>
+				<div slot="title">{{title}}</div>
+				<tone-mute></tone-mute>
+			</mwc-top-app-bar>
+			<div id="page">
+				<div id="description">
+					{{{markdown description}}}
+					
+					<div id="references">
+						<div>Docs:</div>
+						<ul>
+							{{#each docs}}
+								<li>
+									<a href="https://tonejs.github.io/docs/{{this}}">
+										{{this}}
+									</a>
+								</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+				<div id="content">
+					loading...
 				</div>
 			</div>
-			<div id="content">
-				loading...
-			</div>
 		</div>
-	</div>
+	</mwc-drawer>
 	<script src="./{{script}}"></script>
 </body>
 </html>

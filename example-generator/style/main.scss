@@ -1,20 +1,29 @@
-@import "../../gui/src/component/common.scss";
+@import "../../src/gui/component/common.scss";
 
 body {
 	font-family: $contentFont;
+	margin: 0px;
+	height: 100vh;
 	
 	#topbar {
 		width: 100%;		
 	}
 	
 	#main {
+
 		display: flex;
-		#sidebar {
-			flex: 0 0 250px;
-		}
+		// overflow-y: auto;
+		max-height: 100vh;
+
+
+		// #sidebar {
+		// 	flex: 0 0 250px;
+		// }
 		
 		#page {
 			flex: 1;
+			margin: 10px;
+			margin-top: 50px;
 
 			#description {
 				// background-color: #f9f9f9;
@@ -60,4 +69,80 @@ body {
 		}
 	}
 
+	#code {
+		margin-top: 40px;
+		border: 1px solid #ddd;
+		overflow: scroll;
+		max-width: 100%;;
+
+		summary {
+			font-family: monospace;
+		}
+
+		pre {
+			margin: 0px;
+			tab-size: 2;
+		}
+	}
+
+	#sidebar {
+		// max-height: 100vh;
+		// overflow-y: auto;
+
+		#scroll {
+			padding-bottom: 10px;
+			padding: 5px;
+
+			ul, li {
+				list-style-type: none;
+				padding: 0px;
+				line-height: 24px;
+
+				a {
+					text-decoration: none;
+					color: black;
+				}
+
+				$steps: 6;
+				$from: $purple;
+				$to: $darkGray;
+
+				@for $var from 0 to $steps {
+					&:nth-child(#{$var}) a {
+						$weight : clamp($var / $steps, 0, 1);
+						$color: mix($to, $from, $weight * 100);
+						color: $color;
+					}
+				}
+				
+			}
+			
+			ul {
+				padding-bottom: 20px;
+			}
+			
+			.category {
+				display: block;
+				padding: 5px;
+				padding-left: 0px;
+				margin-bottom: 5px;
+				font-size: 1.1em;
+				text-transform: capitalize;
+				border-bottom: 2px solid black;
+			}
+		}
+	}
+}
+
+mwc-top-app-bar {
+	--mdc-theme-primary: white;
+	--mdc-theme-secondary: black;
+
+	div {
+		color: black;
+	}
+
+	mwc-icon-button {
+		color: black;
+	}
 }

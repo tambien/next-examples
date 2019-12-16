@@ -49,7 +49,10 @@ async function main() {
 	const exampleTemplate = await getExampleTemplate();
 	examples.forEach(async exampleFile => {
 		const json = await readJSON(exampleFile);
+		// remove the .json and find the .ts file
+		// const code = await readFile(exampleFile.replace(".json", ".ts"));
 		json.hierarchy = hierarchy;
+		// json.code = code;
 		const fileName = basename(exampleFile, ".json");
 		json.script = `${fileName}.js`;
 		await writeFile(resolve(OUT_DIR, `${fileName}.html`), exampleTemplate(json));
