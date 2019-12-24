@@ -1,5 +1,6 @@
 import * as Tone from "tone";
-import { html, render } from "lit-html";
+import { html, render, svg } from "lit-html";
+import { guard } from "lit-html/directives/guard";
 import { ui } from "@tonejs/gui";
 
 // set the bpm and time signature first
@@ -52,82 +53,97 @@ const partR = new Tone.Sequence(((time, note) => {
 // set the playback rate of the right part to be slightly slower
 partR.playbackRate = 0.985;
 
-render(html`
-	<tone-play-toggle
-		@start=${() => Tone.Transport.start()}
-		@stop=${() => Tone.Transport.stop()}
-	></tone-play-toggle>
-`, document.querySelector("#content"));
-
-// document.querySelector("tone-play-toggle").bind(Tone.Transport);
-// document.querySelector("#left").bind(partL);
-// document.querySelector("#right").bind(partR);
-/* // GUI //
-
-Interface.Button({
-	key : 32,
-	type : "toggle",
-	text : "Start",
-	activeText : "Stop",
-	start : function(){
-		Tone.Transport.start("+0.1");
-	},
-	end : function(){
-		Tone.Transport.stop();
-	}
-});
-
-//draw two circles
-var leftCanvas = $("#Left");
-var rightCanvas = $("#Right");
-var leftContext = leftCanvas.get(0).getContext("2d");
-var rightContext = rightCanvas.get(0).getContext("2d");
-var canvasWidth = leftCanvas.width() * 2;
-var canvasHeight = leftCanvas.height() * 2;
-var radius = Math.min(canvasWidth, canvasHeight);
-
-function sizeCanvas(){
-	canvasWidth = leftCanvas.width() * 2;
-	canvasHeight = leftCanvas.height() * 2;
-	radius = Math.min(canvasWidth, canvasHeight) * 0.8;
-
-	leftContext.canvas.width = canvasWidth;
-	leftContext.canvas.height = canvasHeight;
-
-	rightContext.canvas.width = canvasWidth;
-	rightContext.canvas.height = canvasHeight;
+function updateDOM() {
+	requestAnimationFrame(updateDOM);
+	const progress = [partL.progress, partR.progress];
+	render(html`
+		<style>
+			#circles {
+				display: flex;
+			}
+			svg {
+				flex: 1;
+				width: 50%;
+				margin: 10px;
+				transition: stroke 0.2s;
+			}
+			svg:nth-child(2) {
+				transform: scale(-1, 1);
+			}
+		</style>
+		<tone-play-toggle
+			@start=${() => Tone.Transport.start()}
+			@stop=${() => Tone.Transport.stop()}
+		></tone-play-toggle>
+		<div id="circles">
+			${progress.map(prog => svg`
+				<svg viewBox="0 0 300 300">
+					<g transform="translate(50, 50)" fill="none">
+					<path
+						stroke=${Math.abs(prog - 1) < 0.01 ? "#ED3333" : "#000"}
+						stroke-width="40" 
+						d="M 200 100 A 100 100 0 
+						${(prog * Math.PI * 2 > Math.PI) ? 1 : 0} 
+						${(prog * Math.PI * 2 > 0) ? 1 : 0}
+						${100 + 100 * Math.cos(prog * Math.PI * 2)}
+						${100 + 100 * Math.sin(prog * Math.PI * 2)}"/> 
+					</g>
+				</svg>
+			`)}
+		</div>
+	`, document.querySelector("#content"));
 }
+updateDOM();
 
-$(window).on("resize", sizeCanvas);
+// draw two circles
+// const leftCanvas = document.querySelector("#left") as HTMLCanvasElement;
+// const rightCanvas = document.querySelector("#left") as HTMLCanvasElement;
+// const leftContext = leftCanvas.getContext("2d");
+// const rightContext = rightCanvas.getContext("2d");
+// let canvasWidth = leftCanvas.offsetWidth * 2;
+// let canvasHeight = leftCanvas.offsetHeight * 2;
+// let radius = Math.min(canvasWidth, canvasHeight);
 
-sizeCanvas();
+// function sizeCanvas() {
+// 	canvasWidth = leftCanvas.offsetWidth * 2;
+// 	canvasHeight = leftCanvas.offsetHeight * 2;
+// 	radius = Math.min(canvasWidth, canvasHeight) * 0.8;
 
-var twoPi = Math.PI * 2;
+// 	leftContext.canvas.width = canvasWidth;
+// 	leftContext.canvas.height = canvasHeight;
 
-function loop(){
-	requestAnimationFrame(loop);
-	leftContext.lineWidth = radius * 0.1;
-	rightContext.lineWidth = radius * 0.1;
-	//draw the left progress
-	leftContext.clearRect(0, 0, canvasWidth, canvasHeight);
-	leftContext.strokeStyle = "#7F33ED";
-	leftContext.save();
-	leftContext.translate(canvasWidth / 2, canvasHeight / 2);
-	leftContext.rotate(-Math.PI / 2);
-	leftContext.beginPath();
-	leftContext.arc(0, 0, radius/2, 0, twoPi * partL.progress, false);
-	leftContext.stroke();
-	leftContext.restore();
+// 	rightContext.canvas.width = canvasWidth;
+// 	rightContext.canvas.height = canvasHeight;
+// }
 
-	//draw the left progress
-	rightContext.clearRect(0, 0, canvasWidth, canvasHeight);
-	rightContext.strokeStyle = "#1EDF3E";
-	rightContext.save();
-	rightContext.translate(canvasWidth / 2, canvasHeight / 2);
-	rightContext.rotate(-Math.PI / 2);
-	rightContext.beginPath();
-	rightContext.arc(0, 0, radius/2, 0, twoPi * partR.progress, false);
-	rightContext.stroke();
-	rightContext.restore();
-}
-loop(); */
+// sizeCanvas();
+
+// const twoPi = Math.PI * 2;
+
+// function loop() {
+// 	requestAnimationFrame(loop);
+// 	leftContext.lineWidth = radius * 0.1;
+// 	rightContext.lineWidth = radius * 0.1;
+// 	// draw the left progress
+// 	leftContext.clearRect(0, 0, canvasWidth, canvasHeight);
+// 	leftContext.strokeStyle = "#7F33ED";
+// 	leftContext.save();
+// 	leftContext.translate(canvasWidth / 2, canvasHeight / 2);
+// 	leftContext.rotate(-Math.PI / 2);
+// 	leftContext.beginPath();
+// 	leftContext.arc(0, 0, radius/2, 0, twoPi * partL.progress, false);
+// 	leftContext.stroke();
+// 	leftContext.restore();
+
+// 	// draw the left progress
+// 	rightContext.clearRect(0, 0, canvasWidth, canvasHeight);
+// 	rightContext.strokeStyle = "#1EDF3E";
+// 	rightContext.save();
+// 	rightContext.translate(canvasWidth / 2, canvasHeight / 2);
+// 	rightContext.rotate(-Math.PI / 2);
+// 	rightContext.beginPath();
+// 	rightContext.arc(0, 0, radius/2, 0, twoPi * partR.progress, false);
+// 	rightContext.stroke();
+// 	rightContext.restore();
+// }
+// loop();

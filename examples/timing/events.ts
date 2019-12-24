@@ -1,28 +1,29 @@
 import * as Tone from "tone";
 import { html, render } from "lit-html";
-import { ui } from "@tonejs/gui";
+import { drawer, ui } from "@tonejs/gui";
 
-/*
-		 KICK
-		 */
+/**
+ * KICK
+ */
 const kick = new Tone.MembraneSynth({
 	envelope: {
 		sustain: 0,
 		attack: 0.02,
 		decay: 0.8
 	},
-	octaves: 10
+	octaves: 10,
+	pitchDecay: 0.01,
 }).toDestination();
 
 const kickPart = new Tone.Loop(((time) => {
 	kick.triggerAttackRelease("C2", "8n", time);
 }), "2n").start(0);
 		
-/*
-		 SNARE
-		 */
+/**
+ * SNARE
+ */
 const snare = new Tone.NoiseSynth({
-	volume: -5,
+	volume: -10,
 	envelope: {
 		attack: 0.001,
 		decay: 0.2,
@@ -42,7 +43,6 @@ const piano = new Tone.PolySynth(Tone.Synth, {
 	oscillator: {
 		partials: [1, 2, 1],
 	},
-	portamento: 0.05
 }).toDestination();
 
 const cChord = ["C4", "E4", "G4", "B4"];
@@ -57,9 +57,9 @@ pianoPart.loop = true;
 pianoPart.loopEnd = "1m";
 pianoPart.humanize = true;
 
-/*
-		 BASS
-		 */
+/**
+ * BASS
+ */
 const bass = new Tone.MonoSynth({
 	volume: -10,
 	envelope: {
@@ -77,17 +77,38 @@ const bass = new Tone.MonoSynth({
 }).toDestination();
 
 const bassPart = new Tone.Sequence(((time, note) => {
-	// bass.triggerAttackRelease(note, "16n", time);
-}), ["C2", ["C3", ["C3", "D2"]], "E2", ["D2", "A1"]]).start(0);
+	bass.triggerAttackRelease(note as string, "16n", time);
+}), ["C2", ["C3", ["C3", "D2"]], "E2", ["D2", "A1"]], "4n").start(0);
 
 bassPart.probability = 0.9;
 
 // set the transport 
 Tone.Transport.bpm.value = 90;
 
-// bind the interface
-// document.querySelector("tone-play-toggle").bind(Tone.Transport);
-// document.querySelector("tone-membrane-synth").bind(kick);
-// document.querySelector("tone-mono-synth").bind(bass);
-// document.querySelector("tone-synth").bind(piano);
-// document.querySelector("tone-noise-synth").bind(snare);
+render(html`
+	<tone-play-toggle 
+		@start=${() => Tone.Transport.start()}
+		@stop=${() => Tone.Transport.stop()}
+	></tone-play-toggle>
+`, document.querySelector("#content"));
+
+drawer({
+	parent: document.querySelector("#content"),
+	open: false,
+}).add({
+	name: "Kick",
+	tone: kick,
+	open: false,
+}).add({
+	name: "Snare",
+	tone: snare,
+	open: false,
+}).add({
+	name: "Bass",
+	tone: bass,
+	open: false,
+}).add({
+	name: "Keys",
+	tone: piano,
+	open: false,
+});

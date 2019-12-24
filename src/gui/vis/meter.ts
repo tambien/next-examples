@@ -1,5 +1,6 @@
 import { VisBase } from "./vis-base";
 import { customElement, html } from "lit-element";
+import * as Color from "color";
 
 @customElement("tone-meter-vis")
 class ToneMeterElement extends VisBase {
@@ -27,6 +28,11 @@ class ToneMeterElement extends VisBase {
 		this.tone = tone as import("tone").Meter;
 		this.tone.normalRange = true;
 		this.loop();
+
+	}
+
+	private renderColor(val: number): string {
+		return Color("#aaa").mix(Color("rgb(209, 196, 15)"), Math.pow(val, 0.5)).hex();
 	}
 
 	render() {
@@ -49,7 +55,8 @@ class ToneMeterElement extends VisBase {
 			</style>
 			<div id="container" style="height: ${this.height}px">
 				${this.meterLevels.map(val => html`
-					<div class="level" style="height: ${(Math.pow(val, 0.5)*100).toFixed(2)}%"></div>
+					<div class="level" 
+						style="height: ${(Math.pow(val, 0.5)*100).toFixed(2)}%; background-color: ${this.renderColor(val)}"></div>
 				`)}
 			</div>
 		`;

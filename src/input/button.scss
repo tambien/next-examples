@@ -21,6 +21,18 @@ button {
 	&:hover {
 		background-color: #f0f;
 		box-shadow: 0 3px 6px rgba(255,0,255,0.16), 0 3px 6px rgba(255,0,255,0.23);
+		color: white;
+	}
+	
+	&:active {
+		background-color: #f0f;
+		color: white;
+	}
+
+	&[disabled] {
+		opacity: 0.5;
+		pointer-events: none;
+		color: #777;
 	}
 
 	::slotted(svg){
@@ -32,4 +44,5 @@ button {
 	&:hover ::slotted(svg){
 		fill: white;
 	}
+
 }

@@ -14,7 +14,8 @@ body {
       body #main #page #description {
         background-color: rgba(1, 135, 134, 0.05);
         padding: 20px;
-        margin-bottom: 30px; }
+        margin-bottom: 30px;
+        border-radius: 5px; }
         body #main #page #description #title {
           font-size: 1.1em;
           margin-bottom: 30px;
@@ -60,15 +61,27 @@ body {
       body #sidebar #scroll ul:nth-child(0) a, body #sidebar #scroll li:nth-child(0) a {
         color: #7f33ed; }
       body #sidebar #scroll ul:nth-child(1) a, body #sidebar #scroll li:nth-child(1) a {
-        color: #7a3bd6; }
+        color: #8833eb; }
       body #sidebar #scroll ul:nth-child(2) a, body #sidebar #scroll li:nth-child(2) a {
-        color: #7542be; }
+        color: #9133e8; }
       body #sidebar #scroll ul:nth-child(3) a, body #sidebar #scroll li:nth-child(3) a {
-        color: #704aa7; }
+        color: #9b33e6; }
       body #sidebar #scroll ul:nth-child(4) a, body #sidebar #scroll li:nth-child(4) a {
-        color: #6b5290; }
+        color: #a433e3; }
       body #sidebar #scroll ul:nth-child(5) a, body #sidebar #scroll li:nth-child(5) a {
-        color: #665978; }
+        color: #ad33e1; }
+      body #sidebar #scroll ul:nth-child(6) a, body #sidebar #scroll li:nth-child(6) a {
+        color: #b633de; }
+      body #sidebar #scroll ul:nth-child(7) a, body #sidebar #scroll li:nth-child(7) a {
+        color: #bf33dc; }
+      body #sidebar #scroll ul:nth-child(8) a, body #sidebar #scroll li:nth-child(8) a {
+        color: #c833d9; }
+      body #sidebar #scroll ul:nth-child(9) a, body #sidebar #scroll li:nth-child(9) a {
+        color: #d233d7; }
+      body #sidebar #scroll ul:nth-child(10) a, body #sidebar #scroll li:nth-child(10) a {
+        color: #db33d4; }
+      body #sidebar #scroll ul:nth-child(11) a, body #sidebar #scroll li:nth-child(11) a {
+        color: #e433d2; }
     body #sidebar #scroll ul {
       padding-bottom: 20px; }
     body #sidebar #scroll .category {

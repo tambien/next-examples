@@ -8,7 +8,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@tonejs/gui" : ["src/gui/index"],
-			"tone" : ["../../Tone.js"]
+			// "tone" : ["../../Tone.js"]
 		}
 	},
 	"include": [

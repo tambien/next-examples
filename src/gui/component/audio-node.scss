@@ -4,6 +4,7 @@
 
 	font-family: $contentFont;
 	margin-bottom: 10px;
+	border-bottom: 1px solid #ddd;
 
 	#title {
 		font-size: 18px!important;
@@ -68,10 +69,7 @@
 			// 	}
 			// }
 
-			&:focus {
-				outline: none;
-				background-color: #d1d1d1;
-			}
+			@include focusHighlight;
 		}
 	}
 }

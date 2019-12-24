@@ -17,10 +17,17 @@ $orange : #f5871f;
 $lightPurple : #ecfbff;
 
 @mixin outline {
-	outline: 0px solid rgba(0,0,0,0.24);
+	outline: 0px solid lighten($orange, 30%);
 
 	&:focus {
 		outline-width: 3px;
+	}
+}
+
+@mixin focusHighlight {
+	&:focus {
+		outline: none;
+		background-color: lighten($orange, 30%);
 	}
 }
 

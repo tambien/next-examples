@@ -19,6 +19,12 @@ export { ToneLoader } from "./interface/loader";
 import "./piano/piano";
 export { TonePiano } from "./piano/piano";
 
+import "./input/step-sequencer";
+export { ToneStepSequencer } from "./input/step-sequencer";
+
+import "./input/slider-pad";
+export { ToneSliderPad } from "./input/slider-pad";
+
 window.addEventListener("load", () => {
 	// make sure that @material/mwc-icons is available
 	if (!customElements.get("mwc-icon")) {

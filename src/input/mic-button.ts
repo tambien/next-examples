@@ -29,7 +29,7 @@ export class ToneMicButton extends LitElement {
 	render() {
 		return html`
 			<tone-button 
-				?disabled=${this.supported}
+				?disabled=${!this.supported}
 				@click=${this._clicked.bind(this)} 
 				title=${this.open ? "Stop" : "Start"}
 				aria-label=${this.open ? "Stop" : "Start"}>

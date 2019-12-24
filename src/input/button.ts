@@ -7,6 +7,9 @@ export class ToneButton extends LitElement {
 	@property({ type: Boolean })
 	pressed = false;
 
+	@property({ type: Boolean })
+	disabled = false;
+
 	updated(changed) {
 		if (changed.has("pressed")) {
 			this.dispatchEvent(new CustomEvent(this.pressed ? "down" : "up", { composed: true }));
@@ -41,6 +44,7 @@ export class ToneButton extends LitElement {
 	render() {
 		return html`
 			<button 
+				?disabled=${this.disabled}
 				?pressed=${this.pressed}
 				@keydown=${this._keydown.bind(this)}
 				@keyup=${this._keyup.bind(this)}

@@ -30,6 +30,7 @@ body {
 				background-color: rgba(1, 135, 134, 0.05);
 				padding: 20px;
 				margin-bottom: 30px;
+				border-radius: 5px;
 
 				#title {
 					font-size: 1.1em;
@@ -103,9 +104,9 @@ body {
 					color: black;
 				}
 
-				$steps: 6;
+				$steps: 12;
 				$from: $purple;
-				$to: $darkGray;
+				$to: $pink;
 
 				@for $var from 0 to $steps {
 					&:nth-child(#{$var}) a {

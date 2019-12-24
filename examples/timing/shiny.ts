@@ -1,13 +1,13 @@
 import * as Tone from "tone";
 import { html, render } from "lit-html";
-import { ui } from "@tonejs/gui";
+import { drawer, ui } from "@tonejs/gui";
 
 // a compressor
 const drumCompress = new Tone.Compressor({
 	threshold: -30,
-	ratio: 6,
-	attack: 0.3,
-	release: 0.1
+	ratio: 10,
+	attack: 0.01,
+	release: 0.2
 }).toDestination();
 
 const distortion = new Tone.Distortion({
@@ -17,9 +17,9 @@ const distortion = new Tone.Distortion({
 
 // hats
 const hats = new Tone.Player({
-	url: "./audio/505/hh.[mp3|ogg]",
+	url: "/audio/505/hh.mp3",
 	volume: -10,
-	fadeOut: 0.05
+	fadeOut: 0.01
 }).chain(distortion, drumCompress);
 
 const hatsLoop = new Tone.Loop({
@@ -32,17 +32,17 @@ const hatsLoop = new Tone.Loop({
 
 // SNARE PART
 const snare = new Tone.Player({
-	url: "./audio/505/snare.[mp3|ogg]", 
+	url: "/audio/505/snare.mp3", 
 	fadeOut: 0.1
 }).chain(distortion, drumCompress);
 
 const snarePart = new Tone.Sequence(((time, velocity) => {
 	snare.volume.value = Tone.gainToDb(velocity);
 	snare.start(time).stop(time + 0.1);
-}), [null, 1, null, [1, 0.3]]).start(0);
+}), [null, 1, null, [1, 0.3]], "4n").start(0);
 
 const kick = new Tone.MembraneSynth({
-	pitchDecay: 0.01,
+	pitchDecay: 0.02,
 	octaves: 6,
 	oscillator: {
 		type: "square4"
@@ -64,10 +64,10 @@ const kickPart = new Tone.Sequence(((time, probability) => {
 const bass = new Tone.FMSynth({
 	harmonicity: 1,
 	modulationIndex: 3.5,
-	// oscillator: {
-	// 	type: "custom",
-	// 	partials: [0, 1, 0, 2]
-	// },
+	oscillator: {
+		type: "custom",
+		partials: [0, 1, 0, 2]
+	},
 	envelope: {
 		attack: 0.08,
 		decay: 0.3,
@@ -163,27 +163,62 @@ const synthNotes = ["C2", "E2", "G2", "A2",
 
 Tone.Transport.bpm.value = 125;
 
-// bind the interface
-// document.querySelector("tone-play-toggle").bind(Tone.Transport);
-// document.querySelector("tone-slider-2d").addEventListener("change", e => {
-// 	// use the x and y values to set the note and vibrato
-// 	const note = synthNotes[Math.round(e.detail.x * (synthNotes.length-1))];
-// 	synth.setNote(note);
-// 	synth.vibratoAmount.value = e.detail.y * 3;
-// });
-// document.querySelector("tone-slider-2d").addEventListener("mousedown", e => {
-// 	const note = synthNotes[Math.round(e.detail.x * (synthNotes.length-1))];
-// 	synth.vibratoAmount.value = e.detail.y * 3;
-// 	synth.triggerAttack(note);
-// });
-// document.querySelector("tone-slider-2d").addEventListener("mouseup", e => {
-// 	synth.triggerRelease();
-// });
-// // bind the drawer interfaces
-// document.querySelector("#hats").bind(hats);
-// document.querySelector("#snare").bind(snare);
-// document.querySelector("#kick").bind(kick);
-// document.querySelector("#bass").bind(bass);
-// document.querySelector("#distortion").bind(distortion);
-// document.querySelector("#compressor").bind(drumCompress);
-// document.querySelector("#lead").bind(synth);
+function move({ x, y }) {
+	// use the x and y values to set the note and vibrato
+	const note = synthNotes[Math.round(x * (synthNotes.length-1))];
+	synth.setNote(note);
+	synth.vibratoAmount.value = y;
+}
+
+function triggerAttack({ x, y }) {
+	// use the x and y values to set the note and vibrato
+	const note = synthNotes[Math.round(x * (synthNotes.length-1))];
+	synth.triggerAttack(note);
+	synth.vibratoAmount.value = y;
+}
+
+render(html`
+	<tone-play-toggle 
+		@start=${() => Tone.Transport.start()}
+		@stop=${() => Tone.Transport.stop()}
+	></tone-play-toggle>
+	<tone-slider-pad
+		@move=${({ detail }) => move(detail)}
+		@down=${({ detail }) => triggerAttack(detail)}
+		@up=${() => synth.triggerRelease()}
+	></tone-slider-pad>
+`, document.querySelector("#content"));
+
+const drwr = drawer({
+	parent: document.querySelector("#content"),
+	open: false,
+});
+
+drwr.folder({
+	name: "Drums"
+}).add({
+	tone: hats,
+	name: "Hats"
+}).add({
+	tone: kick,
+	name: "Kick"
+}).add({
+	tone: snare,
+	name: "Snare"
+}).add({
+	tone: drumCompress,
+	name: "Compressor"
+}).add({
+	tone: distortion,
+	name: "Distortion"
+});
+
+drwr.folder({
+	name: "Synths"
+}).add({
+	tone: bass,
+	name: "Bass"
+}).add({
+	tone: synth,
+	name: "Synth"
+});

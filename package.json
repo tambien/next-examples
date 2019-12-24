@@ -58,10 +58,12 @@
 		"@material/mwc-top-app-bar": "^0.11.1",
 		"@tonejs/midi": "^2.0.15",
 		"audiokeys": "^0.1.1",
+		"color": "^3.1.2",
 		"highlight.js": "^9.17.1",
 		"monaco-editor": "^0.18.1",
 		"p5": "^0.10.2",
-		"tone": "^14.5.12",
+		"three": "^0.111.0",
+		"tone": "^14.5.23",
 		"webmidi": "^2.5.1"
 	}
 }

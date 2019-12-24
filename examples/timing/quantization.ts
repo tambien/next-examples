@@ -1,30 +1,54 @@
 import * as Tone from "tone";
 import { html, render } from "lit-html";
-import { ui } from "@tonejs/gui";
+import { drawer } from "@tonejs/gui";
 
-const polySynth = new Tone.PolySynth(Tone.Synth).toDestination();
+const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 
-// bind the interface
-// document.querySelector("tone-transport").bind(Tone.Transport);
-// document.querySelector("tone-transport").addEventListener("play", e => {
-// 	// enable all of the buttons if it's playing		
-// 	Array.from(document.querySelectorAll("tone-button")).forEach(el => {
-// 		if (e.detail) {
-// 			el.removeAttribute("disabled");
-// 		} else {
-// 			el.setAttribute("disabled", "");
-// 		}
-// 	});
-// });
-// document.querySelector("#at8n").addEventListener("click", e => {
-// 	polySynth.triggerAttackRelease("B4", "8n", "@8n");
-// });
-// document.querySelector("#at4n").addEventListener("click", e => {
-// 	polySynth.triggerAttackRelease("E4", "8n", "@4n");
-// });
-// document.querySelector("#at2n").addEventListener("click", e => {
-// 	polySynth.triggerAttackRelease("G3", "8n", "@2n");
-// });
-// document.querySelector("#at1m").addEventListener("click", e => {
-// 	polySynth.triggerAttackRelease("C2", "8n", "@1m");
-// });
+render(html`
+	<style>
+		#transportTime {
+			line-height: 20px;
+			margin-bottom: 20px;
+		}
+	</style>
+	<tone-play-toggle 
+		@start=${() => Tone.Transport.start()}
+		@stop=${() => Tone.Transport.stop()}
+	></tone-play-toggle>
+	<div id="transportTime">
+		0:0:0
+	</div>
+	<tone-button disabled @click=${() => synth.triggerAttackRelease("C4", 0.1, "@4n")}>
+		@4n
+	</tone-button>
+	<tone-button disabled @click=${() => synth.triggerAttackRelease("E4", 0.1, "@2n")}>
+		@2n
+	</tone-button>
+	<tone-button disabled @click=${() => synth.triggerAttackRelease("G4", 0.1, "@1m")}>
+		@1m
+	</tone-button>
+`, document.querySelector("#content"));
+
+Tone.Transport.on("start", () => {
+	// enable all the buttons on start
+	document.querySelectorAll("tone-button").forEach((button: HTMLButtonElement) => button.disabled = false);
+});
+
+Tone.Transport.on("stop", () => {
+	// disable on stop
+	document.querySelectorAll("tone-button").forEach((button: HTMLButtonElement) => button.disabled = true);
+});
+
+// update the transport time
+function loop() {
+	requestAnimationFrame(loop);
+	(document.querySelector("#transportTime") as HTMLDivElement).textContent = `position ${Tone.Transport.position}`;
+}
+loop();
+
+drawer({
+	 parent: document.querySelector("#content"),
+	 open: false,
+}).add({
+	tone: synth,
+});
