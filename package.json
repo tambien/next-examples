@@ -4,8 +4,10 @@
 	"description": "Tone.js Examples",
 	"main": "index.js",
 	"scripts": {
+		"build": "npm run build:html && npm run build:css && npm run build:js",
 		"build:css": "node-sass ./example-generator/style/ -o ./assets/style",
 		"build:html": "node -r ts-node/register ./example-generator/index.ts --output=$npm_config_output",
+		"build:js": "webpack -p --mode=development",
 		"lint": "eslint --ext ts ./**/*.ts --fix",
 		"watch": "concurrently \"npm run watch:css\" \"npm run watch:html\" \"npm run watch:js\"",
 		"watch:css": "npm run build:css -- -w",
