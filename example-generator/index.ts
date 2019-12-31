@@ -21,6 +21,13 @@ async function getExampleTemplate(): Promise<TemplateDelegate> {
 	});
 }
 
+async function getIndexTemplate(): Promise<TemplateDelegate> {
+	const exampleTemplate = await readFile(resolve(TEMPLATE_DIR, "index.hbs"), "utf-8");
+	return compile(exampleTemplate, {
+		preventIndent: true,
+	});
+}
+
 async function ensureDirs() {
 	await ensureDir(OUT_DIR);
 }
@@ -57,5 +64,14 @@ async function main() {
 		json.script = `${fileName}.js`;
 		await writeFile(resolve(OUT_DIR, `${fileName}.html`), exampleTemplate(json));
 	});
+	// also write the main page
+	const indexTemplate = await getIndexTemplate();
+	const indexMd = await readFile(resolve(IN_DIR, "index.md"));
+	// console.log();
+	await writeFile(resolve(OUT_DIR, "index.html"), indexTemplate({
+		title: "Tone.js Examples",
+		hierarchy,
+		content: indexMd.toString()
+	}));
 }
 main();

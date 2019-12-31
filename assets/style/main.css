@@ -11,6 +11,10 @@ body {
       flex: 1;
       margin: 10px;
       margin-top: 50px; }
+      body #main #page #main-content {
+        max-width: 700px;
+        width: 90%;
+        margin: 10px auto; }
       body #main #page #description {
         background-color: rgba(1, 135, 134, 0.05);
         padding: 20px;

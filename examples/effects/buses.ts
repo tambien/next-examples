@@ -1,35 +1,76 @@
 import * as Tone from "tone";
 import { html, render } from "lit-html";
-import { ui } from "@tonejs/gui";
+import { drawer, ui } from "@tonejs/gui";
 
 // the synth
 const synth = new Tone.Synth({
 	envelope: {
 		attack: 0.04,
 	}
-}).toDestination();
+});
 
 // make some effects
-// const chorus = new Tone.Chorus()
-// 	.receive("chorus")
-// 	.toDestination();
+const chorus = new Tone.Chorus({
+	wet: 1,
+}).toDestination().start();
+const chorusChannel = new Tone.Channel().connect(chorus);
+chorusChannel.receive("chorus");
 
-// const cheby = new Tone.Chebyshev(50)
-// 	.receive("cheby")
-// 	.toDestination();
+const cheby = new Tone.Chebyshev(50)
+	.toDestination();
+const chebyChannel = new Tone.Channel().connect(cheby);
+chebyChannel.receive("cheby");
 
-// const reverb = new Tone.Freeverb(0.8, 4000)
-// 	.receive("reverb")
-// 	.toDestination();
+const reverb = new Tone.Reverb(3)
+	.toDestination();
+const reverbChannel = new Tone.Channel().connect(reverb);
+reverbChannel.receive("reverb");
 
-// send audio to each of the effect channels
-// const chorusSend = synth.send("chorus", -Infinity);
-// const chebySend = synth.send("cheby", -Infinity);
-// const reverbSend = synth.send("reverb", -Infinity);
+// send the synth to all of the channels
+const synthChannel = new Tone.Channel().toDestination();
+synthChannel.send("chorus");
+synthChannel.send("cheby");
+synthChannel.send("reverb");
+synth.connect(synthChannel);
 
-// // bind the interface
-// document.querySelector("tone-chorus").bind(chorus);
-// document.querySelector("tone-chebyshev").bind(cheby);
-// document.querySelector("tone-freeverb").bind(reverb);
-// document.querySelector("tone-synth").bind(synth);
-// document.querySelector("tone-piano").bind(synth);
+render(html`
+	<tone-piano
+		@noteon=${({ detail }) => synth.triggerAttack(detail.name, undefined, detail.velocity)}
+		@noteoff=${() => synth.triggerRelease()}
+	></tone-piano>
+	<tone-slider
+		label="chorus send"
+		min="-100"
+		max="0"
+		value="0"
+		units="db"
+		@input=${({ detail }) => chorusChannel.volume.value = detail.value}
+	></tone-slider>
+	<tone-slider
+		label="reverb send"
+		min="-100"
+		max="0"
+		value="0"
+		units="db"
+		@input=${({ detail }) => reverbChannel.volume.value = detail.value}
+	></tone-slider>
+	<tone-slider
+		label="chebychev filter send"
+		min="-100"
+		max="0"
+		value="0"
+		units="db"
+		@input=${({ detail }) => chebyChannel.volume.value = detail.value}
+	></tone-slider>
+`, document.querySelector("#content"));
+
+drawer({
+	parent: document.querySelector("#content"),
+	open: false,
+}).add({
+	tone: chorus,
+}).add({
+	tone: reverb,
+}).add({
+	tone: cheby,
+});

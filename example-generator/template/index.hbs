@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{title}}</title>
+	{{!-- <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script> --}}
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+	{{!-- <script src="https://unpkg.com/tone@typescript"></script> --}}
+	<script src="/node_modules/tone/build/Tone.js"></script>
+	<script src="./components.js"></script>
+	<link rel="stylesheet" type="text/css" href="../assets/style/main.css">
+</head>
+<body>
+	{{!-- {{> topbar }} --}}
+	<tone-loader></tone-loader>
+	<mwc-drawer type="modal" open>
+		<span slot="title">Examples</span>
+		{{> sidebar }}
+		<div id="main" slot="appContent">
+			<mwc-top-app-bar dense>
+				<mwc-icon-button slot="navigationIcon" icon="menu"></mwc-icon-button>
+				<div slot="title">{{title}}</div>
+			</mwc-top-app-bar>
+			<div id="page">
+				<div id="description">
+					{{{markdown content}}}
+				</div>
+			</div>
+		</div>
+	</mwc-drawer>
+</body>
+</html>

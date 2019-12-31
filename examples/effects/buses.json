@@ -1,6 +1,6 @@
 {
 	"title" : "Buses",
-	"description" : "Buses make it easy to share effects across many instruments. <code>send</code> audio to a named bus from an instrument and then <code>receive</code> that channel on your effect. The gain values are all in decibels.",
+	"description" : "Tone.Channel make it easy to share effects across many instruments. Send audio to a named Channel using `send` and `receive`.",
 	"docs" : [
 		"Channel",
 		"Channel.send",
