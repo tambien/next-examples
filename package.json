@@ -38,10 +38,10 @@
 		"fs-extra": "^8.1.0",
 		"glob": "^7.1.6",
 		"glob-promise": "^3.4.0",
-		"handlebars": "^4.5.3",
+		"handlebars": "^4.7.6",
 		"lit-element": "^2.2.1",
 		"marked": "^0.7.0",
-		"node-sass": "^4.13.0",
+		"node-sass": "^4.13.1",
 		"nodemon": "^1.19.4",
 		"sass-loader": "^8.0.0",
 		"style-loader": "^1.0.0",
@@ -65,7 +65,7 @@
 		"monaco-editor": "^0.18.1",
 		"p5": "^0.10.2",
 		"three": "^0.111.0",
-		"tone": "^14.5.23",
+		"tone": "^14.5.46",
 		"webmidi": "^2.5.1"
 	}
 }
