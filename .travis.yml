@@ -1,0 +1,11 @@
+sudo: false
+dist: trusty
+language: node_js
+node_js:
+- '11'
+install:
+- npm install
+- git config --global user.email "travis@travis-ci.org"
+- git config --global user.name "Travis CI"
+script: 
+  - npm run build
