@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
 	{{!-- <script src="https://unpkg.com/tone@typescript"></script> --}}
-	<script src="/node_modules/tone/build/Tone.js"></script>
-	<script src="./components.js"></script>
-	<link rel="stylesheet" type="text/css" href="../assets/style/main.css">
+	<script src="./dist/Tone.js"></script>
+	<script src="./dist/components.js"></script>
+	<link rel="stylesheet" type="text/css" href="./dist/main.css">
 </head>
+
 <body>
 	{{!-- {{> topbar }} --}}
 	<tone-loader></tone-loader>
@@ -27,16 +29,16 @@
 			<div id="page">
 				<div id="description">
 					{{{markdown description}}}
-					
+
 					<div id="references">
 						<div>Docs:</div>
 						<ul>
 							{{#each docs}}
-								<li>
-									<a href="https://tonejs.github.io/docs/{{this}}">
-										{{this}}
-									</a>
-								</li>
+							<li>
+								<a href="https://tonejs.github.io/docs/{{this}}">
+									{{this}}
+								</a>
+							</li>
 							{{/each}}
 						</ul>
 					</div>
@@ -47,6 +49,7 @@
 			</div>
 		</div>
 	</mwc-drawer>
-	<script src="./{{script}}"></script>
+	<script src="./dist/{{script}}"></script>
 </body>
+
 </html>
