@@ -1,0 +1,18 @@
+<div id="sidebar">
+	<div id="scroll">
+		<ul>
+			{{#each hierarchy}}
+					<li><span class="category">{{@key}}</span></li>
+					<ul>
+					{{#each this}}
+						<li>
+							<a href="{{this}}">
+								{{@key}}
+							</a>
+						</li>
+					{{/each}}
+				</ul>
+			{{/each}}
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,8 @@
+{
+	"title" : "Pitch Shift",
+	"description" : "Shift the input signal by some frequency",
+	"docs" : [
+		"FrequencyShift",
+		"PitchShift"
+	]
+}

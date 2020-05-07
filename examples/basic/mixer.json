@@ -1,0 +1,8 @@
+{
+	"title": "Mixer",
+	"description": "Tone.Channel provides a simple channel interface. It allows for panning and volume changes as well as the ability to solo (exclude audio in other Tone.Channels). ",
+	"docs" : [
+		"Channel",
+		"Solo"
+	]
+}

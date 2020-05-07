@@ -1,0 +1,7 @@
+{
+	"title": "Microphone",
+	"description": "If supported, Tone.UserMedia uses <code>getUserMedia</code> to open the user's microphone where it can then be processed with Tone.js. Only works on https domains.",
+	"docs" : [
+		"UserMedia"
+	]
+}

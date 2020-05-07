@@ -1,0 +1,7 @@
+{
+	"title" : "Ping Pong Delay",
+	"description" : "A Ping Pong Delay is a stereo feedback delay where the delay bounces back and forth between the left and right channels. Hit the button to trigger a snare sample into the effect. ",
+	"docs" : [
+		"PingPongDelay"
+	]
+}

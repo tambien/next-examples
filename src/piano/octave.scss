@@ -1,0 +1,34 @@
+#container {
+	display: block;
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+tone-keyboard-note {
+	order: 0;
+	flex-grow: 1;
+}
+
+#white-notes {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+#black-notes {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	height: 55%;
+}
+
+#black-notes tone-keyboard-note:first-child, #black-notes tone-keyboard-note:last-child {
+	flex-grow: 0.5;
+	pointer-events: none;
+}

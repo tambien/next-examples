@@ -1,0 +1,7 @@
+{
+	"title" : "GrainPlayer",
+	"description" : "Tone.GrainPlayer uses [granular synthesis](https://en.wikipedia.org/wiki/Granular_synthesis) to enable you to adjust pitch and playback rate independently. The grainSize is the amount of time each small chunk of audio is played for and the overlap is the amount of crossfading transition time between successive grains.",
+	"docs": [
+		"GrainPlayer"
+	]
+}

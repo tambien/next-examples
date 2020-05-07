@@ -1,0 +1,11 @@
+{
+	"title" : "Events",
+	"description" : "Tone's Event classes simplify scheduling events along the Transport. Each class abstracts away calls to Tone.Transport and lets you create precise, rhythmic events which are startable, stoppable and loopable.",
+	"docs" : [
+		"ToneEvent",
+		"Loop",
+		"Part",
+		"Pattern",
+		"Sequence"
+	]
+}

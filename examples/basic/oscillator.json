@@ -1,0 +1,5 @@
+{
+	"title" : "Oscillator",
+	"description" : "The oscillator has 4 basic types which can be altered by setting the number of partials and partials array",
+	"docs" : ["Oscillator", "Oscillator#partials"]
+}

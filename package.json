@@ -1,0 +1,72 @@
+{
+	"name": "@tonejs/examples",
+	"version": "0.0.1",
+	"description": "Tone.js Examples",
+	"main": "index.js",
+	"scripts": {
+		"build": "npm run build:html && npm run build:css && npm run build:js",
+		"build:css": "node-sass ./example-generator/style/ -o ./dist/",
+		"build:html": "node -r ts-node/register ./example-generator/index.ts --output=$npm_config_output",
+		"build:js": "webpack -p --mode=development --env.output=./dist",
+		"copy": "cp ./node_modules/tone/build/Tone.js ./dist/Tone.js",
+		"lint": "eslint --ext ts ./**/*.ts --fix",
+		"watch": "concurrently \"npm run watch:css\" \"npm run watch:html\" \"npm run watch:js\"",
+		"watch:css": "npm run build:css -- -w",
+		"watch:html": "nodemon --exec \"npm run build:html\" --ext ts,hbs --ignore scripts/type.ts --ignore scripts/sidebar.ts",
+		"watch:js": "webpack --watch --mode=development"
+	},
+	"nodemonConfig": {
+		"watch": [
+			"example-generator"
+		]
+	},
+	"author": "",
+	"license": "GPL-3.0",
+	"devDependencies": {
+		"@material/mwc-checkbox": "^0.11.1",
+		"@material/mwc-icon": "^0.11.1",
+		"@material/mwc-slider": "^0.11.1",
+		"@material/mwc-textfield": "^0.11.1",
+		"@types/node": "^12.12.8",
+		"@types/p5": "^0.9.0",
+		"@typescript-eslint/eslint-plugin": "^2.7.0",
+		"@typescript-eslint/parser": "^2.7.0",
+		"concurrently": "^5.0.0",
+		"css-loader": "^3.2.0",
+		"deep-equal": "^1.1.1",
+		"eslint": "^6.6.0",
+		"eslint-plugin-jsdoc": "^18.0.1",
+		"fs-extra": "^8.1.0",
+		"glob": "^7.1.6",
+		"glob-promise": "^3.4.0",
+		"handlebars": "^4.7.6",
+		"lit-element": "^2.2.1",
+		"marked": "^0.7.0",
+		"node-sass": "^4.13.1",
+		"nodemon": "^1.19.4",
+		"sass-loader": "^8.0.0",
+		"style-loader": "^1.0.0",
+		"svg-inline-loader": "^0.8.0",
+		"to-string-loader": "^1.1.6",
+		"ts-loader": "^6.2.1",
+		"ts-node": "^8.5.2",
+		"typescript": "^3.7.2",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10"
+	},
+	"dependencies": {
+		"@material/mwc-drawer": "^0.11.1",
+		"@material/mwc-icon-button": "^0.11.1",
+		"@material/mwc-icon-button-toggle": "^0.11.1",
+		"@material/mwc-top-app-bar": "^0.11.1",
+		"@tonejs/midi": "^2.0.15",
+		"audiokeys": "^0.1.1",
+		"color": "^3.1.2",
+		"highlight.js": "^9.17.1",
+		"monaco-editor": "^0.18.1",
+		"p5": "^0.10.2",
+		"three": "^0.111.0",
+		"tone": "^14.6.7",
+		"webmidi": "^2.5.1"
+	}
+}

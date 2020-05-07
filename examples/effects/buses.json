@@ -1,0 +1,9 @@
+{
+	"title" : "Buses",
+	"description" : "Tone.Channel make it easy to share effects across many instruments. Send audio to a named Channel using `send` and `receive`.",
+	"docs" : [
+		"Channel",
+		"Channel.send",
+		"Channel.receive"
+	]
+}

@@ -1,0 +1,7 @@
+{
+	"title" : "PolySynth",
+	"description" : "Tone.PolySynth handles voice creation and allocation for any monophonic instruments passed in as the first parameter. PolySynth is not a synthesizer by itself, it merely manages voices of one of the other types of synths, allowing any of the monophonic synthesizers to be polyphonic. ",
+	"docs" : [
+		"PolySynth"
+	]
+}

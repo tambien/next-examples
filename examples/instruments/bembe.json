@@ -1,0 +1,9 @@
+{
+	"title": "Bembe",
+	"description" : "MetalSynth creates metallic, inharmonic sounds using 6 FMOscillators with a tuning based on the TR-808 Cymbal. MembraneSynth makes kick and tom-like sounds using a frequency envelope which is triggered on notes attack.",
+	"docs" : [
+		"MetalSynth",
+		"MembraneSynth",
+		"FMOscillator"
+	]
+}

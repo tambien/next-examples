@@ -1,0 +1,8 @@
+{
+	"title" : "Analyser",
+	"description" : "FFT returns the amplitude of the incoming signal at different frequencies. Waveform returns the signal value between -1 and 1",
+	"docs" : [
+		"FFT",
+		"Waveform"
+	]
+}

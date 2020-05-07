@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{title}}</title>
+	{{!-- <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2/webcomponents-bundle.js"></script> --}}
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+	{{!-- <script src="https://unpkg.com/tone@typescript"></script> --}}
+	<script src="./dist/Tone.js"></script>
+	<script src="./dist/components.js"></script>
+	<link rel="stylesheet" type="text/css" href="./dist/main.css">
+</head>
+
+<body>
+	{{!-- {{> topbar }} --}}
+	<tone-loader></tone-loader>
+	<mwc-drawer type="modal">
+		<span slot="title">Examples</span>
+		{{> sidebar }}
+		<div id="main" slot="appContent">
+			<mwc-top-app-bar dense>
+				<mwc-icon-button slot="navigationIcon" icon="menu"></mwc-icon-button>
+				<div slot="title">{{title}}</div>
+				<tone-mute></tone-mute>
+			</mwc-top-app-bar>
+			<div id="page">
+				<div id="description">
+					{{{markdown description}}}
+
+					<div id="references">
+						<div>Docs:</div>
+						<ul>
+							{{#each docs}}
+							<li>
+								<a href="https://tonejs.github.io/docs/{{this}}">
+									{{this}}
+								</a>
+							</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+				<div id="content">
+					loading...
+				</div>
+			</div>
+		</div>
+	</mwc-drawer>
+	<script src="./dist/{{script}}"></script>
+</body>
+
+</html>

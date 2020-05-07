@@ -1,0 +1,7 @@
+{
+	"title" : "Reverb",
+	"description" : "Reverb is a convolution-based reverb which uses a generated decaying noise burst as the impulse response. `decay` controls how long the noise burst lasts",
+	"docs" : [
+		"Reverb"
+	]
+}

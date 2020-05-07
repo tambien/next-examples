@@ -1,0 +1,7 @@
+{
+	"title" : "Animation Sync",
+	"description" : "Audio scheduling and rendering visuals should always be kept separate. Instead of triggering visuals from within a scheduled event callback, schedule a 'deferred' callback using Tone.Draw which will be invoked on an animation frame at the exact moment of the scheduled event.",
+	"docs" : [
+		"Draw"
+	]
+}

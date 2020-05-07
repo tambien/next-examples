@@ -1,0 +1,27 @@
+$muteButtonSize: 30px;
+
+mwc-icon-button-toggle {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	// height: $muteButtonSize;
+	// width: $muteButtonSize;
+	// appearance: none;
+	// -webkit-appearance: none;
+	// border: none;
+	// background-color: transparent;
+	// overflow: hidden;
+	// padding: 0px;
+	cursor: pointer;
+	color: black;
+	z-index: 100000;
+	// width: $muteButtonSize * 0.8;
+	// height: $muteButtonSize * 0.8;
+
+	&[on] {
+		color: #ff4800;
+	}
+
+	// mwc-icon {
+	// }
+}
