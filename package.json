@@ -62,7 +62,7 @@
 		"@tonejs/midi": "^2.0.15",
 		"audiokeys": "^0.1.1",
 		"color": "^3.1.2",
-		"highlight.js": "^9.17.1",
+		"highlight.js": "^10.1.2",
 		"monaco-editor": "^0.18.1",
 		"p5": "^0.10.2",
 		"three": "^0.111.0",
