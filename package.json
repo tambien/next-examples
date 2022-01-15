@@ -41,7 +41,7 @@
 		"glob-promise": "^3.4.0",
 		"handlebars": "^4.7.6",
 		"lit-element": "^2.2.1",
-		"marked": "^0.7.0",
+		"marked": "^4.0.10",
 		"node-sass": "^4.13.1",
 		"nodemon": "^1.19.4",
 		"sass-loader": "^8.0.0",
