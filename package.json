@@ -46,13 +46,13 @@
 		"nodemon": "^1.19.4",
 		"sass-loader": "^8.0.0",
 		"style-loader": "^1.0.0",
-		"svg-inline-loader": "^0.8.0",
+		"svg-inline-loader": "^0.8.2",
 		"to-string-loader": "^1.1.6",
 		"ts-loader": "^6.2.1",
 		"ts-node": "^8.5.2",
 		"typescript": "^3.7.2",
 		"webpack": "^4.41.2",
-		"webpack-cli": "^3.3.10"
+		"webpack-cli": "^3.3.12"
 	},
 	"dependencies": {
 		"@material/mwc-drawer": "^0.11.1",
